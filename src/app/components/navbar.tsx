@@ -3,8 +3,16 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { clearAuthToken, RootState } from '../utils/store/store';
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  
+  // Get accessToken
+  const dispatch = useDispatch();
+  const accessToken = useSelector((state:RootState) => state.auth.accessToken);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -33,16 +41,26 @@ export default function Navbar() {
             <Link href="/images/favorites">
               <p className="text-white hover:text-gray-300">Favorite Images</p>
             </Link>
-            <Link href="/auth/signup">
-              <button className="text-white bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-md transition-colors duration-300">
-                Sign Up
-              </button>
-            </Link>
-            <Link href="/auth/login">
-              <button className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors duration-300">
-                Login
-              </button>
-            </Link>
+            { !accessToken ? (
+              <>
+                <Link href="/auth/signup">
+                  <button className="w-full text-white bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
+                    Sign Up
+                  </button>
+                </Link>
+                <Link href="/auth/login">
+                  <button className="w-full text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
+                    Login
+                  </button>
+                </Link>
+              </>
+            ):(
+              <Link href="/auth/login">
+                <button onClick={() => dispatch(clearAuthToken())} className="w-full text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
+                  Logout
+                </button>
+              </Link>
+            )}
           </div>
         </div>
         {/* Mobile menu */}
@@ -54,16 +72,26 @@ export default function Navbar() {
             <Link href="/images/favorites">
               <p className="block text-white hover:text-gray-300 mt-3">Favorite Images</p>
             </Link>
-            <Link href="/auth/signup">
-              <button className="w-full text-white bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
-                Sign Up
-              </button>
-            </Link>
-            <Link href="/auth/login">
-              <button className="w-full text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
-                Login
-              </button>
-            </Link>
+            { !accessToken ? (
+              <>
+                <Link href="/auth/signup">
+                  <button className="w-full text-white bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
+                    Sign Up
+                  </button>
+                </Link>
+                <Link href="/auth/login">
+                  <button className="w-full text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
+                    Login
+                  </button>
+                </Link>
+              </>
+            ):(
+              <Link href="/auth/login">
+                <button onClick={() => dispatch(clearAuthToken())} className="w-full text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md transition-colors duration-300 mt-3">
+                  Logout
+                </button>
+              </Link>
+            )}
           </div>
         )}
     </nav>

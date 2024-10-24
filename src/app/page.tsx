@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useImageSearch } from './hooks/useImageSearch';
@@ -12,6 +12,7 @@ import Title from './components/title';
 import InputField from './components/inputField';
 
 export default function Home() {
+  const previousSearch = useRef<string | null>(null);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const { images, haveImages, searchImages } = useImageSearch();
   const { toggleFavorite, isFavorite } = useFavorites();
@@ -21,7 +22,14 @@ export default function Home() {
       reset();
       return
     };
-    searchImages(data.query.trim());
+
+    const search = data.query.trim();
+    if (previousSearch.current === search) {      
+      return
+    };
+
+    previousSearch.current = search;
+    searchImages(search);
   });
   
   return (

@@ -8,16 +8,21 @@ import Title from './title';
 import { useForm } from 'react-hook-form';
 import { singUpFetch } from '../api/auth';
 import { mapBackendErrorsToFrontend } from '../utils/fieldMappings';
+import { useRouter } from 'next/navigation';
 import { emailRegex, passwordMinLength } from '../utils/regex';
+import { setAuthToken } from '../utils/store/store';
+import { useDispatch } from 'react-redux';
+import { getImagesFavorites, likeImages } from '../api/image';
 
 const SignUpForm = () => {
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
+    const router = useRouter();
+    const dispatch = useDispatch();
     
     const onSubmit = handleSubmit(async(data) => {
         if(data.password != data.confirmPassword) return setError('confirmPassword', { type: 'validate', message: 'Password do not match'});
 
         const response = await singUpFetch(data);
-        console.log(response);
 
         if (!response.success) {
             const errorField = response.data;            
@@ -33,6 +38,19 @@ const SignUpForm = () => {
                     }
                 }
             }
+        } else {
+            localStorage.setItem("access_token", response.data.access_token);
+            dispatch(setAuthToken(response.data.access_token));
+
+            const jsonString = localStorage.getItem('favorites') ?? '';
+            if (jsonString !== '') {
+                const jsonList: Array<{ id: string; slug: string; altDescription: string; createdAt: string; updatedAt: string | null; dimensions: { width: number; height: number }; urls: { raw: string; small: string } }> = JSON.parse(jsonString);
+                await likeImages(response.data.access_token, jsonList);
+            }
+
+            const images = await getImagesFavorites(response.data.access_token);
+            localStorage.setItem("favorites", JSON.stringify(images.data.images));
+            router.push('/images/favorites');
         }
     })
 

@@ -9,7 +9,7 @@ interface InputFieldProps {
   validation?: object;
   error?: { message?: string };
   placeholder?: string;
-}
+};
 
 const InputField: React.FC<InputFieldProps> = ({ id, label, type = 'text', register, validation = {}, error, placeholder }) => (
   <div className="mb-4">

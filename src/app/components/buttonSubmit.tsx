@@ -7,7 +7,7 @@ interface ButtonProps {
   size: string;
   marginTop: string;
   marginButtom: string;
-}
+};
 
 const ButtonSubmit: React.FC<ButtonProps> = ({ label, paddingX, paddingY, size, marginTop, marginButtom }) => {
   return (

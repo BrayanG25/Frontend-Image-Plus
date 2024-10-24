@@ -1,6 +1,6 @@
 interface FrontendErrorMap {
     [key: string]: string;
-}
+};
 
 const backendToFrontendFieldMap: { [key: string]: string } = {
     username: 'username',

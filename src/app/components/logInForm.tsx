@@ -7,18 +7,20 @@ import Title from './title';
 
 import { useForm } from 'react-hook-form';
 import { logInFetch } from '../api/auth';
+import { getImagesFavorites, likeImages } from '../api/image';
 import { mapBackendErrorsToFrontend } from '../utils/fieldMappings';
 import { emailRegex, passwordMinLength } from '../utils/regex';
 import { useRouter } from 'next/navigation';
+import { setAuthToken } from '../utils/store/store';
+import { useDispatch } from 'react-redux';
 
 const LogInForm = () => {
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
     const router = useRouter();
+    const dispatch = useDispatch();
     
     const onSubmit = handleSubmit(async(data) => {
-
         const response = await logInFetch(data);
-        console.log(response);
 
         if (!response.success) {
             const errorField = response.data;
@@ -35,6 +37,17 @@ const LogInForm = () => {
                 }
             }
         } else {
+            localStorage.setItem("access_token", response.data.access_token);
+            dispatch(setAuthToken(response.data.access_token));
+
+            const jsonString = localStorage.getItem('favorites') ?? '';
+            if (jsonString !== '') {
+                const jsonList: Array<{ id: string; slug: string; altDescription: string; createdAt: string; updatedAt: string | null; dimensions: { width: number; height: number }; urls: { raw: string; small: string } }> = JSON.parse(jsonString);
+                await likeImages(response.data.access_token, jsonList);
+            }
+
+            const images = await getImagesFavorites(response.data.access_token);
+            localStorage.setItem("favorites", JSON.stringify(images.data.images));
             router.push('/images/favorites');
         }
     })

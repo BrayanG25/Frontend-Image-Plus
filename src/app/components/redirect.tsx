@@ -5,7 +5,7 @@ interface RedirectProps {
   text: string;
   description: string;
   href: string;
-}
+};
 
 const Redirect: React.FC<RedirectProps> = ({text, description, href}) => {
   return (
