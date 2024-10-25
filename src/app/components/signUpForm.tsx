@@ -49,9 +49,7 @@ const SignUpForm = () => {
             }
 
             const images = await getImagesFavorites(response.data.access_token);
-            if (images?.data?.images) {
-                localStorage.setItem("favorites", JSON.stringify(images.data.images));
-            }
+            if (images?.data?.images) localStorage.setItem("favorites", JSON.stringify(images.data.images));
             router.push('/images/favorites');
         }
     })
