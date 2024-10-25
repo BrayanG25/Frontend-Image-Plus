@@ -1,12 +1,16 @@
-const BASE_URL = 'http://127.0.0.1:4001/api/v1';
+const BASE_URL = 'https://image-plus-8621559e1d38.herokuapp.com/api/v1';
 
 import { ImageType } from '../hooks/useFavorites';
 import { cache } from 'react';
 
 export const getImagesByKeyWordsFetch = cache(async (data: { search: string }) => {
-	const response = await fetch(`${BASE_URL}/image?page=1&perpage=10&search=${data.search}`);
+	const response = await fetch(`${BASE_URL}/image?page=1&perpage=20&search=${data.search}`);
 
-    if (!response.ok) throw new Error('Error al obtener las imágenes');
+    if (!response.ok) {
+        console.log(await response.json());
+        
+        throw new Error('Error get Images By Keyword')
+    };
 
     return await response.json();
 });
