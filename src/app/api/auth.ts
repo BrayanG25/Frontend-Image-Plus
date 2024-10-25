@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:4001/api/v1';
+const BASE_URL = 'https://image-plus-8621559e1d38.herokuapp.com/api/v1';
 
 export const singUpFetch = async (data: object) => {
     const response = await fetch(`${BASE_URL}/user/register`, {
