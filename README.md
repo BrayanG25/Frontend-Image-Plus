@@ -1,4 +1,4 @@
-# Image Plus 🎬
+# Image Plus 🏞️🏜️🏙️
 
 Una aplicación de imagenes favoritas elaborada con Next.js que permite a los usuarios hacer consulta de imagenes y marcarlas como favoritas.
 
