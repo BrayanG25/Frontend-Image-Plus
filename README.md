@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Image Plus 🎬
 
-## Getting Started
+Una aplicación de imagenes favoritas elaborada con Next.js que permite a los usuarios hacer consulta de imagenes y marcarlas como favoritas.
 
-First, run the development server:
+## 📋 Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🔍 **Consulta de imagenes** Busca y explora imagenes por palabras clave.
+- ⭐ **Favoritos:** Marca imagenes como favoritas.
+- 🔧 **Integración con API Externa:** Utiliza la API de imagenes para obtener datos actualizados.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Tecnologías Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js](https://nextjs.org/) - Framework React para aplicaciones web.
+- [TypeScript](https://www.typescriptlang.org/) - Superset de JavaScript tipado.
+- [Redux Toolkit](https://redux-toolkit.js.org/) - Manejo del estado global de la aplicación.
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS para estilos.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Instalación
 
-## Learn More
+Sigue estos pasos para instalar y ejecutar la aplicación en tu máquina local.
 
-To learn more about Next.js, take a look at the following resources:
+### Prerrequisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Node.js**: Requiere Node.js versión 14 o superior.
+- **NPM o Yarn**: Gestor de paquetes de Node.js.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Pasos de Instalación
 
-## Deploy on Vercel
+1. **Clona este repositorio:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    git clone https://github.com/BrayanG25/Frontend-Image-Plus
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Instala las dependencias:**
+
+    Usando npm:
+
+    ```bash
+    npm install
+    ```
+
+    O usando yarn:
+
+    ```bash
+    yarn install
+    ```
+
+3. **Inicia el Servidor de Desarrollo:**
+
+    Usando npm:
+
+    ```bash
+    npm run dev
+    ```
+
+    O usando yarn:
+
+    ```bash
+    yarn dev
+    ```
+
+    Abre tu navegador y ve a `http://localhost:3000` para ver la aplicación en ejecución.
