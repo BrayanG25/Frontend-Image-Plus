@@ -22,7 +22,7 @@ export default function Favorites() {
     <>
       <Navbar />
       <main className="min-h-screen p-4">
-        <Title text="Your Favorite Images" align="text-center" size="text-4xl"/>
+        <Title text="Your Favorite Images" align="text-center" size="text-4xl" color='text-black dark:text-white'/>
         {favorites.length > 0 ? (
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 p-4">
             {favorites.map((image: ImageType) => (

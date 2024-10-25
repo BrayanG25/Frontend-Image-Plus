@@ -35,10 +35,10 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className={`flex items-center justify-center ${haveImages ? 'pt-8' : 'min-h-[calc(100vh-15vh)]'}`}>
+      <div className={`flex items-center justify-center ${haveImages ? 'pt-8' : 'min-h-[calc(100vh-9vh)]'}`}>
         <div className="block w-full max-w-md md:max-w-4xl px-4">
           <header className="w-full py-5 px-10 rounded-md bg-zinc-800 shadow-lg mb-4">
-            <Title text="Image Plus" align="text-center" size="text-6xl" />
+            <Title text="Image Plus" align="text-center" size="text-6xl" color='text-white'/>
             <form onSubmit={onSubmit}>
               <div className="mt-4 flex flex-col md:flex-row md:items-center md:gap-4">
                 <div className='w-full md:w-2/3'>

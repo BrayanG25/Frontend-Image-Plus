@@ -60,6 +60,7 @@ const LogInForm = () => {
                     text='Log In' 
                     align='text-left' 
                     size='text-4xl'
+                    color='text-white'
                 />
             </div>
             {/* Email */}

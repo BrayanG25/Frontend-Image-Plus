@@ -9,7 +9,7 @@ interface RedirectProps {
 
 const Redirect: React.FC<RedirectProps> = ({text, description, href}) => {
   return (
-    <p className='flex gap-x-2 justify-between'>
+    <p className='flex gap-x-2 justify-between text-white'>
       {description} <Link href={href} className='text-blue-500'>{text}</Link>
     </p>
   );

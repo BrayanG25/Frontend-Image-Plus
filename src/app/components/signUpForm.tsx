@@ -62,6 +62,7 @@ const SignUpForm = () => {
                     text='Sign up' 
                     align='text-left' 
                     size='text-4xl'
+                    color='text-white'
                 />
             </div>
             {/* Username */}
